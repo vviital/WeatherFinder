@@ -15,22 +15,22 @@ public class Weather {
     @Column(name = "weather_id")
     private Long id;
 
-    @Column(name = "temperature")
+    @Column(name = "temperature", columnDefinition = "TEXT")
     private String temperature;
 
-    @Column(name = "pressure")
+    @Column(name = "pressure", columnDefinition = "TEXT")
     private String pressure;
 
-    @Column(name = "windSpeed")
+    @Column(name = "windSpeed", columnDefinition = "TEXT")
     private String windSpeed;
 
-    @Column(name = "windDirection")
+    @Column(name = "windDirection", columnDefinition = "TEXT")
     private String windDirection;
 
-    @Column(name = "cloudiness")
+    @Column(name = "cloudiness", columnDefinition = "TEXT")
     private String cloudiness;
 
-    @Column(name = "humidity")
+    @Column(name = "humidity", columnDefinition = "TEXT")
     private String humidity;
 
     @ManyToOne

@@ -18,8 +18,8 @@ import java.util.List;
 @RestController
 public class WeatherController {
 
-//    @Autowired
-//    private WeatherService weatherService;
+    @Autowired
+    private WeatherService weatherService;
 
     @RequestMapping(value = "/weathers/{date}", method = RequestMethod.GET)
     public DayWeather weather(@PathVariable String date) {
@@ -27,7 +27,7 @@ public class WeatherController {
         int year = Integer.parseInt(arr[0]);
         int month = Integer.parseInt(arr[1]);
         int day = Integer.parseInt(arr[2]);
-        DayWeather dayWeather = new DayWeather();//weatherService.getWeather(new GregorianCalendar(year, month, day));
+        DayWeather dayWeather = weatherService.getWeather(new GregorianCalendar(year, month, day));
         System.out.println(dayWeather.toString());
         return dayWeather;
     }

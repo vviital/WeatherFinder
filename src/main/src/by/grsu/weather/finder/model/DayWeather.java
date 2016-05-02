@@ -21,7 +21,7 @@ public class DayWeather {
     @Temporal(TemporalType.DATE)
     private Calendar date;
 
-    @OneToMany(mappedBy = "dayWeather")
+    @OneToMany(mappedBy = "dayWeather", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Weather> weatherList = new ArrayList<Weather>();
 
     public DayWeather() {
