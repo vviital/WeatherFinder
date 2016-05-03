@@ -2,6 +2,8 @@ package by.grsu.weather.finder.controllers;
 
 import by.grsu.weather.finder.model.DayWeather;
 import by.grsu.weather.finder.services.interfaces.WeatherService;
+import by.grsu.weather.finder.wrappers.ListWeatherWrapper;
+import by.grsu.weather.finder.wrappers.WeatherWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,19 +24,18 @@ public class WeatherController {
     private WeatherService weatherService;
 
     @RequestMapping(value = "/weathers/{date}", method = RequestMethod.GET)
-    public DayWeather weather(@PathVariable String date) {
+    public WeatherWrapper weather(@PathVariable String date) {
         String[] arr = date.split("-");
         int year = Integer.parseInt(arr[0]);
         int month = Integer.parseInt(arr[1]);
         int day = Integer.parseInt(arr[2]);
         DayWeather dayWeather = weatherService.getWeather(new GregorianCalendar(year, month, day));
-        System.out.println(dayWeather.toString());
-        return dayWeather;
+        return new WeatherWrapper(dayWeather);
     }
 
     @RequestMapping(value = "/weathers", method = RequestMethod.GET)
-    public List<DayWeather> weatherList() {
+    public ListWeatherWrapper weatherList() {
         List<DayWeather> dayWeathers = weatherService.getWeather();
-        return dayWeathers;
+        return new ListWeatherWrapper(dayWeathers);
     }
 }
