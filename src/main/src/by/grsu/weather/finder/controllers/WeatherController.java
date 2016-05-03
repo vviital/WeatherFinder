@@ -34,6 +34,7 @@ public class WeatherController {
 
     @RequestMapping(value = "/weathers", method = RequestMethod.GET)
     public List<DayWeather> weatherList() {
-        return new ArrayList<DayWeather>();
+        List<DayWeather> dayWeathers = weatherService.getWeather();
+        return dayWeathers;
     }
 }

@@ -1,5 +1,7 @@
 package by.grsu.weather.finder.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -12,7 +14,7 @@ public class Weather {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "weather_id")
+    @Column(name = "weather_id", nullable = false)
     private Long id;
 
     @Column(name = "temperature", columnDefinition = "TEXT")
@@ -33,6 +35,7 @@ public class Weather {
     @Column(name = "humidity", columnDefinition = "TEXT")
     private String humidity;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "day_id")
     private DayWeather dayWeather;

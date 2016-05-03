@@ -1,6 +1,9 @@
 package by.grsu.weather.finder.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -15,10 +18,11 @@ public class DayWeather {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "day_id")
+    @Column(name = "day_id", nullable = false)
     private Long id;
 
     @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Calendar date;
 
     @OneToMany(mappedBy = "dayWeather", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -37,6 +41,7 @@ public class DayWeather {
         this.weatherList = weatherList;
     }
 
+    @JsonIgnore
     public Weather getNight() {
         return weatherList.get(0);
     }
@@ -46,6 +51,7 @@ public class DayWeather {
         night.setDayWeather(this);
     }
 
+    @JsonIgnore
     public Weather getMorning() {
         return this.weatherList.get(1);
     }
@@ -55,6 +61,7 @@ public class DayWeather {
         morning.setDayWeather(this);
     }
 
+    @JsonIgnore
     public Weather getDay() {
         return this.weatherList.get(2);
     }
@@ -64,6 +71,7 @@ public class DayWeather {
         day.setDayWeather(this);
     }
 
+    @JsonIgnore
     public Weather getEvening() {
         return this.weatherList.get(3);
     }

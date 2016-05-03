@@ -22,11 +22,15 @@ public class WeatherFinderImpl implements WeatherFinder{
     public DayWeather find(Calendar date) {
         DayWeather dayWeather = new DayWeather();
         int day = date.get(Calendar.DAY_OF_MONTH);
-        int month = date.get(Calendar.MONTH);
+        int month = date.get(Calendar.MONTH) + 1;
         int year = date.get(Calendar.YEAR);
         String url = "http://meteo.by/grodno/retro/" + year + "-" + month + "-" + day;
         dayWeather = HttpPageSearcher.find(url);
         dayWeather.setDate(date);
+        if (dayWeather.getEvening() == null) {
+            int num = 0;
+            num++;
+        }
         return dayWeather;
     }
 }

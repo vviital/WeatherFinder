@@ -4,10 +4,12 @@ import by.grsu.weather.finder.model.DayWeather;
 import by.grsu.weather.finder.repositories.interfaces.DayWeatherRepository;
 import by.grsu.weather.finder.services.interfaces.WeatherFinder;
 import by.grsu.weather.finder.services.interfaces.WeatherService;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -36,5 +38,12 @@ public class WeatherServiceImpl implements WeatherService{
             weather = result.get(0);
         }
         return weather;
+    }
+
+    @Override
+    public List<DayWeather> getWeather() {
+        Iterable<DayWeather> result = repository.findAll();
+        List<DayWeather> list = Lists.newArrayList(result);
+        return list;
     }
 }

@@ -20,10 +20,15 @@ public class Tests {
     public void test() {
         Calendar calendar = new GregorianCalendar(2005, 1, 1);
         for(int i = 0; i < 600; ++i) {
-            System.out.println(i + " : " + calendar.toString());
-            DayWeather weather = weatherService.getWeather(calendar);
-            System.out.println(weather.toString());
-            calendar.add(Calendar.DAY_OF_YEAR, 1);
+            try {
+                System.out.println(i + " : " + calendar.toString());
+                DayWeather weather = weatherService.getWeather(calendar);
+                System.out.println(weather.toString());
+                calendar.add(Calendar.DAY_OF_YEAR, 1);
+            } catch (Exception e) {
+                System.out.println(calendar.toString());
+                int num = 0;
+            }
         }
     }
 }
