@@ -16,5 +16,5 @@ import java.util.List;
 @Repository
 public interface DayWeatherRepository extends CrudRepository<DayWeather, Long> {
 
-    List<DayWeather> findByDate(Calendar date);
+    List<DayWeather> findByDate(Calendar day);
 }

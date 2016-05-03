@@ -6,6 +6,10 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('weather', function() {
+    this.route('day');
+    this.route('all');
+  });
 });
 
 export default Router;

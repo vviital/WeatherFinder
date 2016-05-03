@@ -15,10 +15,10 @@ public class HttpPageParser {
         elements.remove(elements.first());
         elements.remove(elements.first());
         elements.remove(elements.last());
-        dayWeather.setNight(parseWeather(elements.get(0)));
+        dayWeather.setNightWeather(parseWeather(elements.get(0)));
         dayWeather.setMorning(parseWeather(elements.get(1)));
-        dayWeather.setDay(parseWeather(elements.get(2)));
-        dayWeather.setEvening(parseWeather(elements.get(3)));
+        dayWeather.setDaytimeWeather(parseWeather(elements.get(2)));
+        dayWeather.setEveningWeather(parseWeather(elements.get(3)));
         return dayWeather;
     }
 
