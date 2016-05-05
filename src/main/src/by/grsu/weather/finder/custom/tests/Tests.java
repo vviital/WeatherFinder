@@ -18,17 +18,17 @@ public class Tests {
     private WeatherService weatherService;
 
     public void test() {
-//        Calendar calendar = new GregorianCalendar(2005, 1, 1);
-//        for(int i = 0; i < 600; ++i) {
-//            try {
+        Calendar calendar = new GregorianCalendar(2001, 8, 1);
+        for (int i = 0; i < 3000; ++i) {
+            try {
 //                System.out.println(i + " : " + calendar.toString());
-//                DayWeather weather = weatherService.getWeather(calendar);
-//                System.out.println(weather.toString());
-//                calendar.add(Calendar.DAY_OF_YEAR, 1);
-//            } catch (Exception e) {
-//                System.out.println(calendar.toString());
-//                int num = 0;
-//            }
-//        }
+                DayWeather weather = weatherService.getWeather(calendar);
+                System.out.println(weather.getDay());
+            } catch (Exception e) {
+                System.out.println(calendar.toString());
+            } finally {
+                calendar.add(Calendar.DAY_OF_YEAR, 1);
+            }
+        }
     }
 }

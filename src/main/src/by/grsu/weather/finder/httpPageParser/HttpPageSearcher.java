@@ -20,9 +20,10 @@ public class HttpPageSearcher {
             Element element = doc.select("ul.b-weather").first();
             weather = HttpPageParser.parseDayWeather(element);
             long end = System.currentTimeMillis();
-            System.out.println(end - start);
+            System.out.print(end - start + "\t");
         } catch (Exception e) {
-            System.out.println(e.getStackTrace());
+            System.out.println(e.getStackTrace().toString());
+            throw new RuntimeException("Page empty", e);
         }
         return weather;
     }

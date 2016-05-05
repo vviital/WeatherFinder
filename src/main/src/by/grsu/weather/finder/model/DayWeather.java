@@ -30,8 +30,7 @@ public class DayWeather {
     List<Weather> weatherList = new ArrayList<Weather>();
 
     public DayWeather() {
-        for(int i = 0; i < 4; ++i)
-            weatherList.add(new Weather());
+
     }
 
     public List<Weather> getWeatherList() {
@@ -40,46 +39,6 @@ public class DayWeather {
 
     public void setWeatherList(List<Weather> weatherList) {
         this.weatherList = weatherList;
-    }
-
-    @JsonIgnore
-    public Weather getNightWeather() {
-        return weatherList.get(0);
-    }
-
-    public void setNightWeather(Weather night) {
-        this.weatherList.set(0, night);
-        night.setDayWeather(this);
-    }
-
-    @JsonIgnore
-    public Weather getMorningWeather() {
-        return this.weatherList.get(1);
-    }
-
-    public void setMorning(Weather morning) {
-        this.weatherList.set(1, morning);
-        morning.setDayWeather(this);
-    }
-
-    @JsonIgnore
-    public Weather getDaytimeWeather() {
-        return this.weatherList.get(2);
-    }
-
-    public void setDaytimeWeather(Weather day) {
-        this.weatherList.set(2, day);
-        day.setDayWeather(this);
-    }
-
-    @JsonIgnore
-    public Weather getEveningWeather() {
-        return this.weatherList.get(3);
-    }
-
-    public void setEveningWeather(Weather evening) {
-        this.weatherList.set(3, evening);
-        evening.setDayWeather(this);
     }
 
     public Calendar getDate() {
@@ -103,17 +62,23 @@ public class DayWeather {
         return format.format(getDate().getTime());
     }
 
+    public void addWeather(Weather weather) {
+        this.weatherList.add(weather);
+    }
+
+    public void bindWeather() {
+        for(Weather weather : weatherList) {
+            weather.setDayWeather(this);
+        }
+    }
+
     @Override
     public String toString() {
         StringBuffer buffer = new StringBuffer();
-        buffer.append(getNightWeather().toString());
-        buffer.append("\n");
-        buffer.append(getMorningWeather().toString());
-        buffer.append("\n");
-        buffer.append(getDaytimeWeather().toString());
-        buffer.append("\n");
-        buffer.append(getEveningWeather().toString());
-        buffer.append("\n");
+        for(Weather weather : weatherList) {
+            buffer.append(weather.toString());
+            buffer.append("\n");
+        }
         return buffer.toString();
     }
 }

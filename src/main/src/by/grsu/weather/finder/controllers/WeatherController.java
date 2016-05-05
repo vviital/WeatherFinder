@@ -25,9 +25,14 @@ public class WeatherController {
     public WeatherWrapper weather(@PathVariable String date) {
         String[] arr = date.split("-");
         int year = Integer.parseInt(arr[0]);
-        int month = Integer.parseInt(arr[1]);
+        int month = Integer.parseInt(arr[1]) - 1;
         int day = Integer.parseInt(arr[2]);
-        DayWeather dayWeather = weatherService.getWeather(new GregorianCalendar(year, month, day));
+        DayWeather dayWeather = new DayWeather();
+        try {
+            dayWeather = weatherService.getWeather(new GregorianCalendar(year, month, day));
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
         return new WeatherWrapper(dayWeather);
     }
 

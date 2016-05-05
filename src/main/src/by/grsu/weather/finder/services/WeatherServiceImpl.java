@@ -31,7 +31,11 @@ public class WeatherServiceImpl implements WeatherService{
         List<DayWeather> result = repository.findByDate(day);
         DayWeather weather = new DayWeather();
         if (result.size() == 0) {
-            weather = weatherFinder.find(day);
+            try {
+                weather = weatherFinder.find(day);
+            } catch (RuntimeException e) {
+                throw e;
+            }
             repository.save(weather);
         } else {
             weather = result.get(0);

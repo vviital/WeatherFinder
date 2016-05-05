@@ -35,6 +35,9 @@ public class Weather {
     @Column(name = "humidity", columnDefinition = "TEXT")
     private String humidity;
 
+    @Column(name = "daytime", columnDefinition = "TEXT")
+    private String dayTime;
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "day_id")
@@ -94,6 +97,14 @@ public class Weather {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getDayTime() {
+        return dayTime;
+    }
+
+    public void setDayTime(String dayTime) {
+        this.dayTime = dayTime;
     }
 
     public DayWeather getDayWeather() {

@@ -24,12 +24,12 @@ public class WeatherFinderImpl implements WeatherFinder{
         int month = date.get(Calendar.MONTH) + 1;
         int year = date.get(Calendar.YEAR);
         String url = "http://meteo.by/grodno/retro/" + year + "-" + month + "-" + day;
-        dayWeather = HttpPageSearcher.find(url);
-        dayWeather.setDate(date);
-        if (dayWeather.getEveningWeather() == null) {
-            int num = 0;
-            num++;
+        try {
+            dayWeather = HttpPageSearcher.find(url);
+            dayWeather.setDate(date);
+            return dayWeather;
+        } catch (RuntimeException e) {
+            throw e;
         }
-        return dayWeather;
     }
 }
