@@ -1,3 +1,11 @@
-{{#each model as |day|}}
-    {{day-weather-show-component day=day.weatherList date=day.day}}
-{{/each}}
+{{filter-weather-component onFilter=(action 'filter')}}
+{{debug filteredList}}
+{{#if filteredList}}
+    {{#each filteredList as |day|}}
+        {{day-weather-show-component day=day.weatherList date=day.day}}
+    {{/each}}
+{{else}}
+    {{#each model as |day|}}
+        {{day-weather-show-component day=day.weatherList date=day.day}}
+    {{/each}}
+{{/if}}

@@ -195,7 +195,7 @@ export default function() {
           "dayTime": "вечер"
         }
       ],
-      day: '2010-12-01',
+      day: '2011-12-03',
       city: {
         cityName: 'Минск',
         cityUrl: 'minsk'
