@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by vviital on 1.5.16.
  */
-public class HttpPageParser {
+public class HtmlPageParser {
     public static DayWeather parseDayWeather(Element element) {
         DayWeather dayWeather = new DayWeather();
         Elements elements = element.select("tr");

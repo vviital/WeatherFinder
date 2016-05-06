@@ -1,4 +1,6 @@
 import by.grsu.weather.finder.custom.tests.Tests;
+import by.grsu.weather.finder.httpPageParser.FindListCities;
+import by.grsu.weather.finder.model.City;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import java.util.List;
 
 /**
  * Created by vviital on 1.5.16.
@@ -22,8 +26,12 @@ public class Starter {
 
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(Starter.class, args);
-        Tests tests = context.getBean(Tests.class);
-        tests.test();
+        List<City> cities = FindListCities.find();
+        for(City item : cities) {
+            System.out.println(item);
+        }
+//        Tests tests = context.getBean(Tests.class);
+//        tests.test();
 //        WeatherFinderImpl finder = new WeatherFinderImpl();
 //        Calendar day = new GregorianCalendar(2013, 8, 1);
 //        for(int i = 0; i < 200; ++i) {

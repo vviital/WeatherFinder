@@ -19,7 +19,7 @@ public class Tests {
 
     public void test() {
         Calendar calendar = new GregorianCalendar(2001, 8, 1);
-        for (int i = 0; i < 3000; ++i) {
+        for (int i = 0; i < 5000; ++i) {
             try {
 //                System.out.println(i + " : " + calendar.toString());
                 DayWeather weather = weatherService.getWeather(calendar);

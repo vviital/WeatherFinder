@@ -18,7 +18,7 @@ public class HttpPageSearcher {
             long start = System.currentTimeMillis();
             Document doc = Jsoup.connect(url).get();
             Element element = doc.select("ul.b-weather").first();
-            weather = HttpPageParser.parseDayWeather(element);
+            weather = HtmlPageParser.parseDayWeather(element);
             long end = System.currentTimeMillis();
             System.out.print(end - start + "\t");
         } catch (Exception e) {
