@@ -7,7 +7,7 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('weather', function() {
-    this.route('day');
+    this.route('day', {path: ':day'});
     this.route('all');
   });
 });

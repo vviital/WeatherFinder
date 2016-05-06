@@ -1,5 +1,6 @@
 <div>
     <table>
+        <h1>{{date-formatter date}}</h1>
         <thead>
             <tr>
                 <td>
@@ -27,9 +28,7 @@
         </thead>
         <tbody>
             {{#each day as |weather|}}
-                {{#weather-show-component weather=weather}}
-
-                {{/weather-show-component}}
+                {{weather-show-component weather=weather}}
             {{/each}}
         </tbody>
     </table>

@@ -1,5 +1,5 @@
 export default function() {
-  this.get('http://localhost:8080/weathers', function() {
+  this.get('http://localhost:8080/weathers', function(db, request) {
     let weathers = [
     {
       "id": 1,
@@ -202,7 +202,23 @@ export default function() {
       }
     }
     ];
-    return {weathers : weathers};
+    if (request.queryParams['filter[day]'] !== undefined) {
+      let qDay = new Date(request.queryParams['filter[day]']);
+      let result = weathers.filter(function(item) {
+        let y1 = new Date(item.day).getYear();
+        let m1 = new Date(item.day).getMonth();
+        let d1 = new Date(item.day).getDate();
+        let y2 = qDay.getYear();
+        let m2 = qDay.getMonth();
+        let d2 = qDay.getDate();
+          console.log(`${y1} ${m1} ${d1} vs ${y2} ${m2} ${d2}`);
+        return y1 === y2 && m1 === m2 && d1 === d2;
+      });
+        console.log(result[0]);
+      return {weather: result[0]};
+    } else {
+      return {weathers : weathers};
+    }
   });
 
   // These comments are here to help you get started. Feel free to delete them.

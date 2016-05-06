@@ -1,0 +1,7 @@
+<form {{action 'find' on='submit'}}>
+    {{input value=date placeholder='День в формате yyyy-mm-ddgi '}}
+    <button type='submit'>Найти</button>
+</form>
+{{#if errors}}
+    {{show-error-component error=errors}}
+{{/if}}
