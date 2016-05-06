@@ -1,1 +1,5 @@
-{{outlet}}
+{{#each model as |day|}}
+    {{#day-weather-show-component day=day.weatherList}}
+
+    {{/day-weather-show-component}}
+{{/each}}

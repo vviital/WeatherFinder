@@ -1,0 +1,36 @@
+<div>
+    <table>
+        <thead>
+            <tr>
+                <td>
+                    Время дня
+                </td>
+                <td>
+                    Температура
+                </td>
+                <td>
+                    Давление
+                </td>
+                <td>
+                    Облачность
+                </td>
+                <td>
+                    Скорость ветра
+                </td>
+                <td>
+                    Направление ветра
+                </td>
+                <td>
+                    Влажность
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each day as |weather|}}
+                {{#weather-show-component weather=weather}}
+
+                {{/weather-show-component}}
+            {{/each}}
+        </tbody>
+    </table>
+</div>
