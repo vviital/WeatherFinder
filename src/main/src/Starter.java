@@ -26,12 +26,12 @@ public class Starter {
 
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(Starter.class, args);
-        List<City> cities = FindListCities.find();
-        for(City item : cities) {
-            System.out.println(item);
-        }
-//        Tests tests = context.getBean(Tests.class);
-//        tests.test();
+//        List<City> cities = FindListCities.find();
+//        for(City item : cities) {
+//            System.out.println(item);
+//        }
+        Tests tests = context.getBean(Tests.class);
+        tests.test();
 //        WeatherFinderImpl finder = new WeatherFinderImpl();
 //        Calendar day = new GregorianCalendar(2013, 8, 1);
 //        for(int i = 0; i < 200; ++i) {

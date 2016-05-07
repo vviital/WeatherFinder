@@ -1,1 +1,5 @@
-{{day-weather-show-component day=model.weatherList date=model.day}}
+{{#if model.errors}}
+    {{show-error-component error=model.errors}}
+{{else}}
+    {{day-weather-show-component day=model.weatherList date=model.day}}
+{{/if}}

@@ -1,24 +1,35 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+    customUtil: Ember.inject.service(),
+
     filteredList: null,
     actions: {
         filter(params) {
-            const {year, month, day} = params;
-            console.log(`${year} ${month} ${day}`);
-            let weathers = this.get('store').peekAll('weather');
-            let result = weathers.filter((item) => {
-                let ok = true;
-                if (year !== undefined)
-                    ok = ok && (year == item.get('day').getFullYear());
-                if (month !== undefined)
-                    ok = ok && (month == item.get('day').getMonth());
-                if (day !== undefined) {
-                    ok = ok && (day == item.get('day').getDate());
-                }
-                return ok;
+          let util = this.get('customUtil');
+          const {year, month, day} = params;
+          console.log(`${year} ${month} ${day}`);
+          let weathers = this.get('store').peekAll('weather');
+          let result = weathers.filter((item) => {
+              let ok = true;
+              if (util.checkYear(year)) {
+                ok = ok && (year == item.get('day').getFullYear());
+              }
+              if (util.checkMonth(month)) {
+                ok = ok && (month == item.get('day').getMonth() + 1);
+              }
+              if (util.checkDay(day)) {
+                ok = ok && (day == item.get('day').getDate());
+              }
+              return ok;
             });
-            this.set('filteredList', result);
+          result.sort((a, b) => {
+              return b.get('day') - a.get('day');
+            });
+          this.set('filteredList', result);
+        },
+        reset() {
+          this.set('filteredList', null);
         }
-    }
-});
+      }
+  });

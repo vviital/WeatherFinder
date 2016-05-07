@@ -1,4 +1,4 @@
-{{filter-weather-component onFilter=(action 'filter')}}
+{{filter-weather-component onFilter=(action 'filter') onReset=(action 'reset')}}
 {{debug filteredList}}
 {{#if filteredList}}
     {{#each filteredList as |day|}}
