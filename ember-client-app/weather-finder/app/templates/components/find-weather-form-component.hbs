@@ -1,7 +1,16 @@
-<form {{action 'find' on='submit'}}>
-    {{input value=date placeholder='День в формате yyyy-mm-dd '}}
-    <button type='submit'>Найти</button>
-</form>
-{{#if errors}}
-    {{show-error-component error=errors}}
-{{/if}}
+<div style="height: 200px;"></div>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--4-col"></div>
+  <div class="mdl-card__title mdl-cell mdl-cell--6-col">
+	<form {{action 'find' on='submit'}}>
+		{{mdl-textfield  isExpandable=true disabled=false value=date
+			label='Поиск погоды' pattern='[0-9]{4}[-]{1}[0-9]{2}[-]{1}[0-9]{2}' 
+			errorMessage="Пожалуйста введите дату в формате yyyy-mm-dd" expandableIcon='search'}}
+		{{#mdl-button (action 'submit') text=''}} Найти {{/mdl-button}}
+	</form>
+	{{#if errors}}
+	    {{show-error-component error=errors}}
+	{{/if}}
+  </div>
+</div>
+

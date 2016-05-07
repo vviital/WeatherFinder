@@ -1,35 +1,31 @@
-<div>
-    <table>
-        <h1>{{date-formatter date}}</h1>
-        <thead>
-            <tr>
-                <td>
-                    Время дня
-                </td>
-                <td>
-                    Температура
-                </td>
-                <td>
-                    Давление
-                </td>
-                <td>
-                    Облачность
-                </td>
-                <td>
-                    Скорость ветра
-                </td>
-                <td>
-                    Направление ветра
-                </td>
-                <td>
-                    Влажность
-                </td>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each day as |weather|}}
-                {{weather-show-component weather=weather}}
-            {{/each}}
-        </tbody>
-    </table>
+<div class="mdl-grid">
+<div class="mdl-cell--2-col"></div>
+<div class="mdl-cell--10-col">
+    <div class="mdl-card__title">
+    <h1 class="mdl-card__title-text white">{{date-formatter date}}</h1>
+  </div>
+    {{#mdl-table content=day as |row|}}
+        {{#mdl-table-col label='Время дня'}}
+            {{row.dayTime}}
+        {{/mdl-table-col}}
+        {{#mdl-table-col label='Температура'}}
+            {{row.temperature}}
+        {{/mdl-table-col}}
+        {{#mdl-table-col label='Давление'}}
+            {{row.pressure}}
+        {{/mdl-table-col}}
+        {{#mdl-table-col label='Облачность'}}
+            {{row.cloudiness}}
+        {{/mdl-table-col}}
+        {{#mdl-table-col label='Скорость ветра'}}
+            {{row.windSpeed}}
+        {{/mdl-table-col}}
+        {{#mdl-table-col label='Направление ветра'}}
+            {{row.windDirection}}
+        {{/mdl-table-col}}
+        {{#mdl-table-col label='Влажность'}}
+            {{row.humidity}}
+        {{/mdl-table-col}}
+    {{/mdl-table}}
+</div>
 </div>

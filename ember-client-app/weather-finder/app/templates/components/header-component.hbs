@@ -1,6 +1,6 @@
-{{#link-to "weather"}}
-    На главную страницу
-{{/link-to}}
-{{#link-to "weather.all"}}
-    Вся погода
-{{/link-to}}
+<div>
+{{#mdl-nav title='Fixed Header Example' fixedHeader=true}}
+  {{mdl-nav-item name='Архив погоды'   route='weather.all'}}
+  {{mdl-nav-item name='Поиск погоды'   route='weather.index'}}
+{{/mdl-nav}}
+</div>

@@ -1,2 +1,6 @@
-{{header-component}}
-{{outlet}}
+{{#mdl-nav title='Поиск погоды' fixedHeader=true}}
+ {{mdl-nav-item name='Архив погоды'   route='weather.all'}}
+ {{mdl-nav-item name='Поиск погоды'   route='weather.index'}}
+	
+	{{outlet}}
+{{/mdl-nav}}

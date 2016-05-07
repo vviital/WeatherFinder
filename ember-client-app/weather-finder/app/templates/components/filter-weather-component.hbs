@@ -1,7 +1,12 @@
-<form {{action 'filter' on='submit'}}>
-    {{input value=year placeholder='YYYY'}}
-    {{input value=month placeholder='MM'}}
-    {{input value=day placeholder='DD'}}
-    <button type="submit">Фильтровать</button>
-    <button {{action 'reset'}}>Cбросить</button>
-</form>
+<div class="mdl-grid">
+	<div class="mdl-cell--2-col"></div>
+	<div class="mdl-cell--9-col">
+		<form {{action 'filter' on='submit'}}>
+		    {{mdl-textfield label='YYYY' value=year pattern='[0-9]{4}'}}
+			{{mdl-textfield label='MM' value=month pattern='[0-9]{2}'}}
+			{{mdl-textfield label='DD' value=day pattern='[0-9]{2}' }}
+		    <button class="mdl-button mdl-button--primary" type="submit" >Фильтровать</button>
+		    <button class="mdl-button mdl-button--primary" {{action 'reset'}}>Cбросить</button>
+		</form>
+	</div>
+</div>

@@ -1,5 +1,4 @@
 {{filter-weather-component onFilter=(action 'filter') onReset=(action 'reset')}}
-{{debug filteredList}}
 {{#if filteredList}}
     {{#each filteredList as |day|}}
         {{day-weather-show-component day=day.weatherList date=day.day}}
