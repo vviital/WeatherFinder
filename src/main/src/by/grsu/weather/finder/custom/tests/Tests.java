@@ -18,18 +18,31 @@ public class Tests {
     private WeatherService weatherService;
 
     public void test() {
-        Calendar calendar = new GregorianCalendar(2016, 4, 1);
-        for (int i = 0; i < 600; ++i) {
+        Calendar start = new GregorianCalendar(2016, 4, 8);
+        Calendar end = new GregorianCalendar(2001, 8, 1);
+        int cnt = 0;
+        while(start.compareTo(end) >= 0) {
             try {
-//                System.out.println(i + " : " + calendar.toString());
-                DayWeather weather = weatherService.getWeather(calendar);
+                DayWeather weather = weatherService.getWeather(start);
                 System.out.println(weather.getDay());
             } catch (Exception e) {
-                System.out.println(calendar.toString());
+                System.out.println(start.toString());
             } finally {
-                calendar.add(Calendar.DAY_OF_YEAR, -1);
+                start.add(Calendar.DAY_OF_YEAR, -1);
             }
         }
+//        Calendar calendar = new GregorianCalendar(2016, 4, 1);
+//        for (int i = 0; i < 600; ++i) {
+//            try {
+////                System.out.println(i + " : " + calendar.toString());
+//                DayWeather weather = weatherService.getWeather(calendar);
+//                System.out.println(weather.getDay());
+//            } catch (Exception e) {
+//                System.out.println(calendar.toString());
+//            } finally {
+//                calendar.add(Calendar.DAY_OF_YEAR, -1);
+//            }
+//        }
 //        Calendar calendar = new GregorianCalendar(2001, 8, 1);
 //        for (int i = 0; i < 5000; ++i) {
 //            try {

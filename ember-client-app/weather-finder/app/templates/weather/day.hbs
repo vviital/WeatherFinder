@@ -1,4 +1,7 @@
 {{#if model.errors}}
+	<div class="mdl-grid">
+		<div class="mdl-cell--12-col" style="height: 200px;"></div>
+	</div>
     {{show-error-component error=model.errors}}
 {{else}}
     {{day-weather-show-component day=model.weatherList date=model.day}}

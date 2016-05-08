@@ -5,6 +5,8 @@ import by.grsu.weather.finder.services.interfaces.WeatherService;
 import by.grsu.weather.finder.wrappers.ListWeatherWrapper;
 import by.grsu.weather.finder.wrappers.WeatherWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -22,23 +24,29 @@ public class WeatherController {
     private WeatherService weatherService;
 
     @RequestMapping(value = "/weathers/{date}", method = RequestMethod.GET)
-    public WeatherWrapper weather(@PathVariable String date) {
-        String[] arr = date.split("-");
-        int year = Integer.parseInt(arr[0]);
-        int month = Integer.parseInt(arr[1]) - 1;
-        int day = Integer.parseInt(arr[2]);
-        DayWeather dayWeather = new DayWeather();
+    public ResponseEntity<WeatherWrapper> weather(@PathVariable String date) {
         try {
-            dayWeather = weatherService.getWeather(new GregorianCalendar(year, month, day));
-        } catch (RuntimeException e) {
-            e.printStackTrace();
+            String[] arr = date.split("-");
+            int year = Integer.parseInt(arr[0]);
+            int month = Integer.parseInt(arr[1]) - 1;
+            int day = Integer.parseInt(arr[2]);
+            DayWeather dayWeather = new DayWeather();
+            try {
+                dayWeather = weatherService.getWeather(new GregorianCalendar(year, month, day));
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+                throw e;
+            }
+            return new ResponseEntity<WeatherWrapper>(new WeatherWrapper(dayWeather), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<WeatherWrapper>(HttpStatus.NOT_FOUND);
         }
-        return new WeatherWrapper(dayWeather);
     }
 
     @RequestMapping(value = "/weathers", method = RequestMethod.GET)
-    public ListWeatherWrapper weatherList() {
+    public ResponseEntity<ListWeatherWrapper> weatherList() {
+        System.out.println("Ira");
         List<DayWeather> dayWeathers = weatherService.getWeather();
-        return new ListWeatherWrapper(dayWeathers);
+        return new ResponseEntity<ListWeatherWrapper>(new ListWeatherWrapper(dayWeathers), HttpStatus.OK);
     }
 }

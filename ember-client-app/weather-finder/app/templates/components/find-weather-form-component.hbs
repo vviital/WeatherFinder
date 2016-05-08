@@ -8,9 +8,17 @@
 			errorMessage="Пожалуйста введите дату в формате yyyy-mm-dd" expandableIcon='search'}}
 		{{#mdl-button (action 'submit') text=''}} Найти {{/mdl-button}}
 	</form>
-	{{#if errors}}
-	    {{show-error-component error=errors}}
-	{{/if}}
   </div>
 </div>
-
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--4-col"></div>
+  <div class="mdl-card__title mdl-cell mdl-cell--6-col">
+	<div>
+		{{#if errors}}
+			<div style='color: #FF9F9F;'>
+		    	<h3>{{errors.message}}</h3>
+		    </div>
+		{{/if}}
+	</div>
+  </div>
+</div>

@@ -10,6 +10,8 @@ export default Ember.Controller.extend({
           const {year, month, day} = params;
           console.log(`${year} ${month} ${day}`);
           let weathers = this.get('store').peekAll('weather');
+          let cnt = 0;
+          const maxRecord = 20;
           let result = weathers.filter((item) => {
               let ok = true;
               if (util.checkYear(year)) {
@@ -21,6 +23,10 @@ export default Ember.Controller.extend({
               if (util.checkDay(day)) {
                 ok = ok && (day == item.get('day').getDate());
               }
+              if (ok) {
+                cnt++;
+                ok = cnt <= maxRecord;
+              }
               return ok;
             });
           result.sort((a, b) => {
@@ -29,7 +35,7 @@ export default Ember.Controller.extend({
           this.set('filteredList', result);
         },
         reset() {
-          this.set('filteredList', null);
+          this.get('store').findAll('weather', {reload: true});
         }
       }
   });
